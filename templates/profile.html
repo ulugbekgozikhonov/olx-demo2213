@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/profile.css' %}">
+{% endblock %}
+
+{% block content %}
+    <div class="setting-box">
+        <div class="setting-box-container">
+            <h3>E’lonlar</h3>
+            <h3>Xabarlar</h3>
+            <h3>To‘lovlar va OLX hisobi</h3>
+            <h3>Olingan baholar</h3>
+            <h3>Nomzod profili</h3>
+            <h3 class="active">Sozlamalar</h3>
+        </div>
+    </div>
+
+    <div class="settings-container">
+        <div class="setting-item">
+            <button class="setting-title">Bog‘lanish uchun ma’lumotlarni o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="name">Shaharni tanlash</label>
+                <input type="text" name="name" id="name" required>
+
+                <label for="user">Aloqa uchun shaxs</label>
+                <input type="text" name="user" id="user" required>
+
+                <label for="phone">Telefon raqami</label>
+                <input type="text" name="phone" id="phone" required>
+
+                <button type="submit">Saqlash</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Parolni o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="password">Parolingiz <span>*</span></label>
+                <input type="password" name="password" id="password" required>
+
+                <label for="new_password">Yangi Parol <span>*</span></label>
+                <input type="password" name="new_password" id="new_password" required>
+
+                <button type="submit">Parolni o'zgartirish</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Email-manzilini o‘zgartirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="name">Sizning OLX dagi xozirgi parolingiz</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="new_email">Yangi Email-manzili</label>
+                <input type="email" name="new_email" id="new_email" required>
+
+                <button type="submit">Saqlash</button>
+            </form>
+        </div>
+
+        <div class="setting-item">
+            <button class="setting-title">Akauntni o‘chirish <span>▼</span></button>
+            <form method="post" action="" class="setting-content">
+                <label for="password">Parolingiz <span>*</span></label>
+                <input type="password" name="password" id="password" required>
+
+                <button type="submit">Akauntni o'chirish</button>
+        </div>
+        <a style="color: red;" href="{% url 'logout' %}">Log out</a>
+    </div>
+{% endblock %}

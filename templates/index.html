@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<body>
+    
+    <main>
+        <form class="search-bar" action="" method="post">
+            <input type="text" placeholder="Nimani qidiryapsiz?">
+            <button class="search-btn">Qidiruv</button>
+        </form>
+        <section class="categories">
+            <h2>OLX xizmatidagi bo'limlar</h2>
+            <div class="category-list">
+               {% for category in categories %}
+                    <a href="{% url 'main' %}">
+                        <div class="category"><img src="{{ category.image.url }}" alt="">{{ category.name }}</div>
+                    </a>
+                {% endfor %}
+            </div>
+        </section>
+    </main>
+    
+</body>
+
+{% endblock %}
+

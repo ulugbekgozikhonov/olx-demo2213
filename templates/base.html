@@ -1,0 +1,96 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OLX</title>
+    <link rel="website icon" type="svg" href="{% static 'img/images 1.svg' %}">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block custom_css %} 
+    {% endblock %} 
+</head>
+
+<body>
+    <header>
+        <div class="navbar">
+            <div class="logo">
+                <a href="{% url 'home' %}">
+                    <img src="{% static 'img/image.png' %}" alt="logo">
+                </a>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Chat</a></li>
+                    <li><a href="#">OZ | Рус</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'profile' %}">
+                            <i class='bx bxs-user'></i>
+                            Hisobingiz</a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}">
+                                <i class='bx bxs-user'></i>
+                                Hisobingiz</a></li>
+                    {% endif %}
+                    {% if request.user.is_authenticated %}
+                        <li><a href="{% url 'announce' %}"><button class="btn">E'lon berish</button></a></li>
+                    {% else %}
+                        <li><a href="{% url 'login' %}"><button class="btn">E'lon berish</button></a></li>            
+                    {% endif %}
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    {% block content %}
+
+    {% endblock %}
+
+    <footer>
+        <div class="footer-container">
+            <!-- Kategoriyalar -->
+            <div class="footer-section">
+                <h3>Kategoriyalar</h3>
+                <ul>
+                    <li><a href="#">Avtomobillar</a></li>
+                    <li><a href="#">Ko‘chmas mulk</a></li>
+                    <li><a href="#">Elektronika</a></li>
+                    <li><a href="#">Xizmatlar</a></li>
+                    <li><a href="#">Ish o‘rinlari</a></li>
+                </ul>
+            </div>
+
+            <!-- Foydali havolalar -->
+            <div class="footer-section">
+                <h3>Foydali havolalar</h3>
+                <ul>
+                    <li><a href="#">Yordam</a></li>
+                    <li><a href="#">Maxfiylik siyosati</a></li>
+                    <li><a href="#">Foydalanish shartlari</a></li>
+                    <li><a href="#">Biz bilan bog‘lanish</a></li>
+                </ul>
+            </div>
+
+            <!-- Ijtimoiy tarmoqlar -->
+            <div class="footer-section">
+                <h3>Biz ijtimoiy tarmoqlarda</h3>
+                <div class="social-icons">
+                    <a href="#"><i class='bx bxl-facebook-circle'></i>Facebook</a>
+                    <a href="#"><i class='bx bxl-telegram'></i>Telegram</a>
+                    <a href="#"><i class='bx bxl-instagram-alt'></i>Instagram</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Copyright qismi -->
+        <div class="footer-bottom">
+            <p>&copy; 2024 OLX.uz. Barcha huquqlar himoyalangan.</p>
+        </div>
+    </footer>
+    <script src="{% static 'js/script.js' %}"></script>
+    <script src="{% static 'js/single.js' %}"></script>
+</body>
+
+</html>

@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block custom_css %}
+    <link rel="stylesheet" href="{% static 'css/announce.css' %}">
+{% endblock custom_css %}
+
+{% block content %}
+    <div class="container">
+        <h2>E’lon joylashtirish</h2>
+
+        <form action="#" method="post" enctype="multipart/form-data">
+            <!-- Sarlavha -->
+            <label for="title">Bizga e’loningiz haqida gapirib bering</label>
+            <input type="text" id="title" name="title" placeholder="Masalan, Iphone 11 kafolati bilan" required>
+
+            <!-- Kategoriya tanlash -->
+            <label for="category">Bo'lim</label>
+            <select id="category" name="category" required>
+                <option value="">Bo'limni tanlang</option>
+                <option value="elektronika">Elektronika</option>
+                <option value="avto">Avto</option>
+                <option value="uy-joy">Uy-joy</option>
+                <option value="xizmatlar">Xizmatlar</option>
+            </select>
+
+            <!-- Rasm yuklash -->
+            <label for="photo">Rasm yuklash:</label>
+            <input type="file" id="photo" name="photo" accept="image/*" required>
+
+            <!-- Tavsif -->
+            <label for="description">Tavsif:</label>
+            <textarea id="description" name="description" rows="4" placeholder="E'lon haqida batafsil yozing..."
+                required></textarea>
+
+            <!-- Narx -->
+            <label for="price">Narx (so'm):</label>
+            <input type="number" id="price" name="price" placeholder="Narxni kiriting" required>
+
+            <!-- Aloqa ma'lumotlari -->
+            <label for="phone">Telefon raqam:</label>
+            <input type="tel" id="phone" name="phone" placeholder="+998 XX XXX XX XX" required>
+
+            <label for="location">Joylashuv:</label>
+            <input type="text" id="location" name="location" placeholder="Shahar yoki tuman" required>
+
+            <!-- Yuborish tugmasi -->
+            <button class="add-btn" type="submit">E'lonni joylash</button>
+        </form>
+    </div>
+   
+{% endblock %}
