@@ -179,7 +179,6 @@
             <button id="registerTab" onclick="showRegister()">Ro‘yxatdan o‘tish</button>
         </div>
         <form id="loginForm" method="post" action="{% url 'login' %}">
-            {% csrf_token %}
             <div class="form-group">
                 <input type="text" placeholder="Telefon raqami yoki username" name="phone_number">
             </div>
@@ -194,7 +193,6 @@
         </form>
 
         <form id="registerForm" class="hidden" method="post" action="{% url 'register' %}">
-            {% csrf_token %}
             <div class="form-group">
                 <input type="text" placeholder="Telefon raqam" name="phone">
             </div>
