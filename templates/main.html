@@ -12,36 +12,21 @@
                 <div class="hero-title">
                     <h1>Biz 1,000 dan ortiq e'lon topdik</h1>
                 </div>
-
-                <a href="{% url 'single' %}" class="card">
-                    <img src="{% static 'img/product1.png' %}" alt="Spark sotiladi 2010">
-                    <div class="info">
-                        <h3>Spark sotiladi 2010</h3>
-                        <p><small>Toshkent, Shayxontohur tumani - 2025-02-24</small></p>
-                        <p>2010 - 213 km</p>
-                        <h4>62 618 350 so’m</h4>
-                    </div>
-                </a>
-
-                <a href="" class="card">
-                    <img src="{% static 'img/product1.png' %}" alt="Jac M3 Plus">
-                    <div class="info">
-                        <h3>Jac M3 plus Qora rangda</h3>
-                        <p><small>Eshonguzar - Bugunda 18:31</small></p>
-                        <p>2023 - 58 000 km</p>
-                        <h4>206 576 000 so’m</h4>
-                    </div>
-                </a>
-
-                <a href="" class="card">
-                    <img src="{% static 'img/product1.png' %}" alt="BYD E2 405km">
-                    <div class="info">
-                        <h3>BYD E2 405km Luxe BYD ROHAT</h3>
-                        <p><small>Toshkent, Bektemir tumani - Bugunda 18:18</small></p>
-                        <p>2024 - 0 km</p>
-                        <h4>236 600 000 so’m</h4>
-                    </div>
-                </a>
+                {% if ads %}
+                    {% for ad in ads %}
+                        <a href="{% url 'single' ad.id %}" class="card">
+                            <img src="{{ ad.default_image }}" alt="#">
+                            <div class="info">
+                                <h3>{{ ad.title }}</h3>
+                                <p><small>{{ ad.address }}</small></p>
+                                <p>{{ ad.description|truncatewords:5 }} </p>
+                                <h4>{{ ad.price }}$</h4>
+                            </div>
+                        </a>
+                    {% endfor %}
+                {% else %}
+                    <h2>Malumot topilamdi</h2>
+                {% endif %}
             </div>
         </div>
     </main>

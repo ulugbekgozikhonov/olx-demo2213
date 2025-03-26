@@ -22,6 +22,12 @@ class Reklama(models.Model):
     def __str__(self):
         return self.title
     
+    @property
+    def default_image(self):
+        first_image = self.rasimlar.first()
+        if first_image:
+            return first_image.image.url
+    
 class ReklamaImages(models.Model):
     reklama = models.ForeignKey(Reklama, on_delete=models.CASCADE, related_name="rasimlar")
     image = models.ImageField(upload_to="reklama/resim/")
