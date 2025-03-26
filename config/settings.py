@@ -122,3 +122,7 @@ MEDIA_ROOT = BASE_DIR /'media/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+LOGIN_URL = "/login/"  # 🔹 Foydalanuvchilar login sahifasiga yo‘naltiriladi
+LOGIN_REDIRECT_URL = "/"  # 🔹 Kirgandan keyin qaysi sahifaga yo‘naltirish
+LOGOUT_REDIRECT_URL = "/"  # 🔹 Chiqib ketgandan keyin qaysi sahifaga yo‘naltirish

@@ -1,22 +1,20 @@
 from django.shortcuts import render, redirect
 from django.views import View
-from django.views.generic import TemplateView, ListView, DetailView
+from django.views.generic import ListView, DetailView
 from .models import Category, Reklama, ReklamaImages
+from django.contrib.auth.mixins import LoginRequiredMixin
+# from django.contrib.auth.decorators import login_required
 
-
-# def home_view(request):
-#     context = {
-#         "categories":  Category.objects.all()
-#     }
-    
-#     return render(request,'index.html', context)
-
+# @login_required faqat funktsiya yani function base view uchun ishlatilandi
 class HomeView(ListView):
     template_name = "index.html"
     model = Category
     context_object_name = "categories"
 
-class AdsView(View):    
+class AdsView(LoginRequiredMixin, View):    
+    login_url = "/users/login/"  # 🔹 Login sahifasi
+    redirect_field_name = "next"  # 🔹 Foydalanuvchi login bo‘lgandan keyin yo‘naltirish
+
     def get(self, request):
         categories = Category.objects.all()
         return render(request, "announce.html", {'categories': categories})
