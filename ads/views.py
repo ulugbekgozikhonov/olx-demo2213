@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
+from django.views import View
 from django.views.generic import TemplateView, ListView, DetailView
 from .models import Category, Reklama, ReklamaImages
 
@@ -15,8 +16,31 @@ class HomeView(ListView):
     model = Category
     context_object_name = "categories"
 
-class AdsView(TemplateView):
-    template_name = 'announce.html'
+class AdsView(View):    
+    def get(self, request):
+        categories = Category.objects.all()
+        return render(request, "announce.html", {'categories': categories})
+    
+    def post(self, request):
+        data = request.POST
+        photo = request.FILES.get('photo')
+        category = Category.objects.filter(name=data.get('category')).first()
+        reklama = Reklama.objects.create(
+            title=data.get('title'),
+            description=data.get('description'),
+            price=data.get('price'),
+            category=category,
+            phone=data.get('phone'),
+            address=data.get('address'),
+            user=request.user,
+        )
+        
+        ReklamaImages.objects.create(
+            reklama=reklama,
+            image=photo,
+        )
+        
+        return redirect('home')
 
 class AdsDetailView(DetailView):
     template_name = 'single.html'

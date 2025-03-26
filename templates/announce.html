@@ -9,7 +9,7 @@
     <div class="container">
         <h2>E’lon joylashtirish</h2>
 
-        <form action="#" method="post" enctype="multipart/form-data">
+        <form action="{% url 'announce' %}" method="post" enctype="multipart/form-data">
             <!-- Sarlavha -->
             <label for="title">Bizga e’loningiz haqida gapirib bering</label>
             <input type="text" id="title" name="title" placeholder="Masalan, Iphone 11 kafolati bilan" required>
@@ -18,16 +18,15 @@
             <label for="category">Bo'lim</label>
             <select id="category" name="category" required>
                 <option value="">Bo'limni tanlang</option>
-                <option value="elektronika">Elektronika</option>
-                <option value="avto">Avto</option>
-                <option value="uy-joy">Uy-joy</option>
-                <option value="xizmatlar">Xizmatlar</option>
+                {% for category in categories %}
+                    <option value="{{ category.name }}">{{ category.name }}</option>
+                {% endfor %}
             </select>
 
             <!-- Rasm yuklash -->
             <label for="photo">Rasm yuklash:</label>
             <input type="file" id="photo" name="photo" accept="image/*" required>
-
+    
             <!-- Tavsif -->
             <label for="description">Tavsif:</label>
             <textarea id="description" name="description" rows="4" placeholder="E'lon haqida batafsil yozing..."
@@ -42,7 +41,7 @@
             <input type="tel" id="phone" name="phone" placeholder="+998 XX XXX XX XX" required>
 
             <label for="location">Joylashuv:</label>
-            <input type="text" id="location" name="location" placeholder="Shahar yoki tuman" required>
+            <input type="text" id="location" name="address" placeholder="Shahar yoki tuman" required>
 
             <!-- Yuborish tugmasi -->
             <button class="add-btn" type="submit">E'lonni joylash</button>
